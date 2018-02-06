@@ -15,7 +15,7 @@ A Excel compatible CSV file reader and writer.
 composer require odan/csv
 ```
 
-## Requirementsant 
+## Requirements
 
 * PHP 7.x
 
@@ -23,6 +23,12 @@ composer require odan/csv
 
 ```php
 $csvReader = new \Odan\Csv\CsvReader();
+
+// Optional settings
+$csvReader->setDelimiter(';');
+$csvReader->setEnclosure('"');
+$csvReader->setNewline("\n");
+$csvReader->setEscape("\\");
 
 $content = file_get_contents('file.csv');
 $csvReader->process($content);
@@ -35,14 +41,18 @@ while($row = $csvReader->fetch()) {
 ## Writing a CSV file
 
 ```php
-$csvWriter = new \Odan\Csv\CsvWriter();
+$outputFile = 'output.csv';
 
-$file = 'output.csv';
-$csvWriter->process($content);
+$csvWriter = new \Odan\Csv\CsvWriter($outputFile);
 
+// Optional settings
+$csvWriter->setDelimiter(';');
+$csvWriter->setEnclosure('"');
+$csvWriter->setNewline("\n");
+        
 $columns = [];
-$columns['id'] = array('text' => __('ID'));
-$columns['title'] = array('text' => __('My fancy title'));
+$columns['id'] = ['text' => 'ID'];
+$columns['title'] = ['text' => 'My fancy title'];
 
 $rows = [];
 $rows[] = [
@@ -50,23 +60,16 @@ $rows[] = [
     ['id' => 2, 'title' => 'No'],
 ];
 
+// Add columns
 $csvWriter->putColumns($columns);
 
-foreach ($rows as $row) {
-    $csvWriter->putRow($row);
-}
-```
-
-## Settings
-
-```php
-// todo
+// Add rows
+$csvWriter->putRows($rows);
 ```
 
 ## License
 
 The MIT License (MIT). Please see [License File](LICENSE) for more information.
-
 
 [PSR-1]: https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-1-basic-coding-standard.md
 [PSR-2]: https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-2-coding-style-guide.md
