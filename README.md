@@ -23,7 +23,9 @@ composer require odan/csv
 
 ```php
 $csvReader = new \Odan\Csv\CsvReader();
-
+$csvReader->setDelimiter(';');
+$csvReader->setEnclosure('"');
+        
 $content = file_get_contents('file.csv');
 $csvReader->process($content);
 
@@ -37,8 +39,10 @@ while($row = $csvReader->fetch()) {
 ```php
 $csvWriter = new \Odan\Csv\CsvWriter();
 
+// Optional settings
+$csvWriter->setDelimiter(';');
+
 $file = 'output.csv';
-$csvWriter->process($content);
 
 $columns = [];
 $columns['id'] = array('text' => __('ID'));
@@ -50,17 +54,13 @@ $rows[] = [
     ['id' => 2, 'title' => 'No'],
 ];
 
+// Add columns
 $csvWriter->putColumns($columns);
 
+// Add rows
 foreach ($rows as $row) {
     $csvWriter->putRow($row);
 }
-```
-
-## Settings
-
-```php
-// todo
 ```
 
 ## License
