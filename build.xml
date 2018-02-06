@@ -4,12 +4,6 @@
     <target name="noop"/>
     <property environment="env"/>
 
-    <tstamp>
-        <format property="now" pattern="yyyy-MM-dd HH:mm:ss" locale="en,UK"/>
-        <format property="now_num" pattern="yyyyMMddHHmmss" locale="en,UK"/>
-        <format property="now_file" pattern="yyyy-MM-dd_HHmmss" locale="en,UK"/>
-    </tstamp>
-
     <!-- By default, we assume all tools to be on the $PATH -->
     <condition property="ext" value=".bat" else="">
         <os family="windows"/>
