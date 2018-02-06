@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Test;
+namespace Odan\Test;
 
 use Odan\Csv\CsvReader;
 use org\bovigo\vfs\vfsStream;
@@ -20,6 +20,9 @@ class CsvReaderTest extends TestCase
      */
     protected $root;
 
+    /**
+     * Setup
+     */
     protected function setUp()
     {
         $this->root = vfsStream::setup('root');
