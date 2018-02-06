@@ -51,8 +51,8 @@ $csvWriter->setEnclosure('"');
 $csvWriter->setNewline("\n");
         
 $columns = [];
-$columns['id'] = array('text' => __('ID'));
-$columns['title'] = array('text' => __('My fancy title'));
+$columns['id'] = ['text' => 'ID'];
+$columns['title'] = ['text' => 'My fancy title'];
 
 $rows = [];
 $rows[] = [
@@ -64,9 +64,7 @@ $rows[] = [
 $csvWriter->putColumns($columns);
 
 // Add rows
-foreach ($rows as $row) {
-    $csvWriter->putRow($row);
-}
+$csvWriter->putRows($rows);
 ```
 
 ## License
