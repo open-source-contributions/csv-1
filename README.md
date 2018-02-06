@@ -15,7 +15,7 @@ A Excel compatible CSV file reader and writer.
 composer require odan/csv
 ```
 
-## Requirementsant 
+## Requirements
 
 * PHP 7.x
 
