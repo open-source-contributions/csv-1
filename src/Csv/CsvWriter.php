@@ -2,9 +2,9 @@
 
 namespace Odan\Csv;
 
-use Exception;
 use Odan\Encoding\EncodingInterface;
 use Odan\Encoding\IsoEncoding;
+use RuntimeException;
 
 /**
  * Excel friendly CSV file writer.
@@ -72,7 +72,7 @@ class CsvWriter
      * @param EncodingInterface $encoding encoding (utf8)
      * @return void
      */
-    public function setEncoding(EncodingInterface $encoding)
+    public function setEncoding(EncodingInterface $encoding): void
     {
         $this->encoding = $encoding;
     }
@@ -87,7 +87,7 @@ class CsvWriter
     public function setFilename($fileName)
     {
         if (empty($fileName)) {
-            throw new Exception("CSV filename required");
+            throw new RuntimeException("CSV filename required");
         }
         $this->fileName = $fileName;
         touch($this->fileName);
@@ -168,7 +168,7 @@ class CsvWriter
         foreach ($rows as $row) {
             $content .= $this->rowToCsv($row);
         }
-        $result = file_put_contents($this->fileName, $content, \FILE_APPEND);
+        $result = file_put_contents($this->fileName, $content, FILE_APPEND);
         return $result !== false;
     }
 
