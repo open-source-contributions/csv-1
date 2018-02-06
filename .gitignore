@@ -1,0 +1,10 @@
+.idea/
+nbproject/
+composer.phar
+composer.lock
+.DS_STORE
+cache.properties
+.php_cs.cache
+.vscode
+vendor/
+build/
