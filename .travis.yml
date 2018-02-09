@@ -1,7 +1,6 @@
 language: php
 
 php:
-  - 7.0
   - 7.1
   - 7.2
 
@@ -17,7 +16,6 @@ cache:
 before_script:
   - travis_retry composer self-update
   - travis_retry composer update ${COMPOSER_FLAGS} --no-interaction --prefer-dist
-  - mysql -e 'create database database_test;'
   - cd $TRAVIS_BUILD_DIR
 
 script:
