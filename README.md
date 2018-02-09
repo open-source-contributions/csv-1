@@ -17,7 +17,7 @@ composer require odan/csv
 
 ## Requirements
 
-* PHP 7.x
+* PHP >= 7.1
 
 ## Reading a CSV file
 
