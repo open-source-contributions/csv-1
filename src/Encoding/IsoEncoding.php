@@ -20,8 +20,7 @@ final class IsoEncoding implements EncodingInterface
         }
         if (mb_check_encoding($data, 'UTF-8')) {
             return mb_convert_encoding($data, 'ISO-8859-1', 'auto');
-        } else {
-            return $data;
         }
+        return $data;
     }
 }
