@@ -142,6 +142,7 @@ class CsvWriter
         }
         $result = $this->putRow($row);
         $this->columns = $columns;
+
         return $result;
     }
 
@@ -169,6 +170,7 @@ class CsvWriter
             $content .= $this->rowToCsv($row);
         }
         $result = file_put_contents($this->fileName, $content, FILE_APPEND);
+
         return $result !== false;
     }
 
@@ -196,6 +198,7 @@ class CsvWriter
             $row = array_map(array($this, 'escape'), $row);
             $result = implode($this->delimiter, $row) . $this->newline;
         }
+
         return $result;
     }
 
@@ -213,6 +216,7 @@ class CsvWriter
         }
         $result = $enclosure . str_replace($enclosure, $enclosure . $enclosure, $value) . $enclosure;
         $result = $this->encoding->encode($result);
+
         return $result;
     }
 }
