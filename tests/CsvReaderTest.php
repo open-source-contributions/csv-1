@@ -62,7 +62,7 @@ class CsvReaderTest extends TestCase
     public function testProcess()
     {
         $this->csvReader->setEncoding(new Utf8Encoding());
-        $this->csvReader->setNewline(PHP_EOL);
+        $this->csvReader->setNewline("\n");
         $this->csvReader->setDelimiter(',');
         $this->csvReader->setEscape('\\');
         $this->csvReader->setEnclosure('"');
@@ -80,7 +80,7 @@ class CsvReaderTest extends TestCase
      */
     public function testProcessWithPreventingDuplicateCsvHeader()
     {
-        $this->csvReader->setNewline(PHP_EOL);
+        $this->csvReader->setNewline("\n");
         $this->csvReader->setDelimiter(',');
 
         $this->assertTrue($this->csvReader->process('header1,header2,header3,header1'));
@@ -94,7 +94,7 @@ class CsvReaderTest extends TestCase
      */
     public function testFetchWithOneRowData()
     {
-        $this->csvReader->setNewline(PHP_EOL);
+        $this->csvReader->setNewline("\n");
         $this->csvReader->setDelimiter(',');
         $this->csvReader->process('this,is,csv,content');
 
@@ -109,9 +109,9 @@ class CsvReaderTest extends TestCase
      */
     public function testFetchWithMultipleRowData()
     {
-        $this->csvReader->setNewline(PHP_EOL);
+        $this->csvReader->setNewline("\n");
         $this->csvReader->setDelimiter(',');
-        $this->csvReader->process('header1,header2,header3,header4'.PHP_EOL.'this,is,csv,content'.PHP_EOL.'this,is,csv,content');
+        $this->csvReader->process('header1,header2,header3,header4'."\n".'this,is,csv,content'."\n".'this,is,csv,content');
         $result = $this->csvReader->fetch();
 
         $this->assertSame('this', $result['header1']);

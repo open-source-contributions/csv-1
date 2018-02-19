@@ -44,7 +44,7 @@ class CsvReader
      *
      * @var string
      */
-    protected $newline = PHP_EOL;
+    protected $newline = "\n";
 
     /**
      * Headers

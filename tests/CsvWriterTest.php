@@ -76,7 +76,7 @@ class CsvWriterTest extends TestCase
         $this->csvWriter->setEncoding(new Utf8Encoding());
         $this->csvWriter->setDelimiter(',');
         $this->csvWriter->setEnclosure('"');
-        $this->csvWriter->setNewline(PHP_EOL);
+        $this->csvWriter->setNewline("\r\n");
 
         $this->assertTrue($this->csvWriter->putColumns([
             ['text' => 'header1'],
