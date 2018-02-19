@@ -9,15 +9,15 @@
   "homepage": "https://github.com/odan/csv",
   "license": "MIT",
   "require": {
-    "php": ">=7.1"
+    "php": ">=7.1",
+    "ext-xml": "*",
+    "ext-mbstring": "*"
   },
   "require-dev": {
     "php": ">=7.1",
     "phpunit/phpunit": "^6.5",
     "mikey179/vfsStream": "^1.6",
-    "phpstan/phpstan": "^0.9",
-    "ext-xml": "*",
-    "ext-mbstring": "*"
+    "phpstan/phpstan": "^0.9"
   },
   "scripts": {
     "test": "phpunit",
