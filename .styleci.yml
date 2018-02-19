@@ -13,6 +13,7 @@ enabled:
   - phpdoc_types
   - php_unit_strict
   - concat_with_spaces
+  - blank_line_before_return
 
 finder:
   name:
