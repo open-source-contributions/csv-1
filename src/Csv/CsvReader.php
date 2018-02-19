@@ -207,6 +207,7 @@ class CsvReader
                 $cache[$header] = 1;
             }
         }
+
         return $headers;
     }
 }
