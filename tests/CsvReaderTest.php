@@ -3,6 +3,7 @@
 namespace Odan\Test;
 
 use Odan\Csv\CsvReader;
+use Odan\Encoding\Utf8Encoding;
 use org\bovigo\vfs\vfsStream;
 use org\bovigo\vfs\vfsStreamDirectory;
 use PHPUnit\Framework\TestCase;
@@ -21,11 +22,17 @@ class CsvReaderTest extends TestCase
     protected $root;
 
     /**
+     * @var CsvReader
+     */
+    protected $csvReader;
+
+    /**
      * Setup
      */
     protected function setUp()
     {
         $this->root = vfsStream::setup('root');
+        $this->csvReader = new CsvReader();
     }
 
     /**
@@ -36,6 +43,87 @@ class CsvReaderTest extends TestCase
      */
     public function testInstance()
     {
-        $this->assertInstanceOf(CsvReader::class, new CsvReader());
+        $this->assertInstanceOf(CsvReader::class, $this->csvReader);
+    }
+
+    /**
+     * Test that it can process csv strings.
+     *
+     * @return void
+     * @covers ::setNewline
+     * @covers ::setEncoding
+     * @covers ::setDelimiter
+     * @covers ::setEnclosure
+     * @covers ::setEscape
+     * @covers ::process
+     * @covers ::parseHeader
+     * @covers ::getCsvHeaders
+     */
+    public function testProcess()
+    {
+        $this->csvReader->setEncoding(new Utf8Encoding());
+        $this->csvReader->setNewline("\n");
+        $this->csvReader->setDelimiter(',');
+        $this->csvReader->setEscape('\\');
+        $this->csvReader->setEnclosure('"');
+
+        $this->assertTrue($this->csvReader->process('header1,header2,header3,header4'));
+    }
+
+    /**
+     * Test that it can process csv strings when preventing duplicate csv headers.
+     *
+     * @return void
+     * @covers ::process
+     * @covers ::parseHeader
+     * @covers ::getCsvHeaders
+     */
+    public function testProcessWithPreventingDuplicateCsvHeader()
+    {
+        $this->csvReader->setNewline("\n");
+        $this->csvReader->setDelimiter(',');
+
+        $this->assertTrue($this->csvReader->process('header1,header2,header3,header1'));
+    }
+
+    /**
+     * Test that it can return null when fetching one row csv strings.
+     *
+     * @return void
+     * @covers ::fetch
+     */
+    public function testFetchWithOneRowData()
+    {
+        $this->csvReader->setNewline("\n");
+        $this->csvReader->setDelimiter(',');
+        $this->csvReader->process('this,is,csv,content');
+
+        $this->assertNull($this->csvReader->fetch());
+    }
+
+    /**
+     * Test that it can fetch multiple row csv strings.
+     *
+     * @return void
+     * @covers ::fetch
+     */
+    public function testFetchWithMultipleRowData()
+    {
+        $this->csvReader->setNewline("\n");
+        $this->csvReader->setDelimiter(',');
+        $this->csvReader->process('header1,header2,header3,header4'."\n".'this,is,csv,content'."\n".'this,is,csv,content');
+        $result = $this->csvReader->fetch();
+
+        $this->assertSame('this', $result['header1']);
+        $this->assertSame('is', $result['header2']);
+        $this->assertSame('csv', $result['header3']);
+        $this->assertSame('content', $result['header4']);
+
+        $result = $this->csvReader->fetch();
+
+        $this->assertSame('this', $result['header1']);
+        $this->assertSame('is', $result['header2']);
+        $this->assertSame('csv', $result['header3']);
+        $this->assertSame('content', $result['header4']);
     }
 }
