@@ -48,28 +48,6 @@ class CsvWriterTest extends TestCase
     }
 
     /**
-     * Test that it can set the specific encoding.
-     *
-     * @return void
-     * @covers ::setEncoding
-     */
-    public function testSetEncoding()
-    {
-        $this->assertNull($this->csvWriter->setEncoding(new Utf8Encoding()));
-    }
-
-    /**
-     * Test that it can set the file name.
-     *
-     * @return void
-     * @covers ::setFileName
-     */
-    public function testSetFileName()
-    {
-        $this->assertNull($this->csvWriter->setFileName(vfsStream::url('root/output.csv')));
-    }
-
-    /**
      * Test that it can throw RuntimeException when setting the null file name.
      *
      * @throws RuntimeException
@@ -78,50 +56,28 @@ class CsvWriterTest extends TestCase
      */
     public function testSetFileNameWithNullFileName()
     {
-        $this->csvWriter->setFileName(null);
-    }
-
-    /**
-     * Test that it can set the delimiter.
-     *
-     * @return void
-     * @covers ::setDelimiter
-     */
-    public function testSetDelimiter()
-    {
-        $this->assertNull($this->csvWriter->setDelimiter(','));
-    }
-
-    /**
-     * Test that it can set the new line.
-     *
-     * @return void
-     * @covers ::setNewline
-     */
-    public function testSetNewline()
-    {
-        $this->assertNull($this->csvWriter->setNewline(PHP_EOL));
-    }
-
-    /**
-     * Test that it can set the enclosure.
-     *
-     * @return void
-     * @covers ::setEnclosure
-     */
-    public function testSetEnclosure()
-    {
-        $this->assertNull($this->csvWriter->setEnclosure('"'));
+        $this->csvWriter->setFileName('');
     }
 
     /**
      * Test that it can put the columns.
      *
      * @return bool
+     * @covers ::setFileName
+     * @covers ::setEncoding
+     * @covers ::setEnclosure
+     * @covers ::setNewline
+     * @covers ::setDelimiter
      * @covers ::putColumns
      */
     public function testPutColumns()
     {
+        $this->csvWriter->setFileName(vfsStream::url('root/output.csv'));
+        $this->csvWriter->setEncoding(new Utf8Encoding());
+        $this->csvWriter->setDelimiter(',');
+        $this->csvWriter->setEnclosure('"');
+        $this->csvWriter->setNewline(PHP_EOL);
+
         $this->assertTrue($this->csvWriter->putColumns([
             ['text' => 'header1'],
             ['text' => 'header2'],
