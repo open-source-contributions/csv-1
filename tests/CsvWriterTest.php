@@ -179,4 +179,27 @@ class CsvWriterTest extends TestCase
             ['this,is,csv,second,row'],
         ]));
     }
+
+    /**
+     * Test that it can set the escape/quote value to CSV string.
+     *
+     * @return bool
+     * @covers ::escape
+     */
+    public function testEscape()
+    {
+        $this->assertSame('"\""\"""', $this->csvWriter->escape('\"\"'));
+    }
+
+    /**
+     * Test that it can set the escape/quote value to CSV string when the value is null or empty.
+     *
+     * @return bool
+     * @covers ::escape
+     */
+    public function testEscapeWithEmptyOrNullValue()
+    {
+        $this->assertSame('""', $this->csvWriter->escape(''));
+        $this->assertSame('""', $this->csvWriter->escape(null));
+    }
 }
