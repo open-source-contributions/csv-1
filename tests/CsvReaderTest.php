@@ -47,72 +47,25 @@ class CsvReaderTest extends TestCase
     }
 
     /**
-     * Test that it can set the specific encoding.
-     *
-     * @return void
-     * @covers ::setEncoding
-     */
-    public function testSetEncoding()
-    {
-        $this->assertNull($this->csvReader->setEncoding(new Utf8Encoding()));
-    }
-
-    /**
-     * Test that it can set the delimiter.
-     *
-     * @return void
-     * @covers ::setDelimiter
-     */
-    public function testSetDelimiter()
-    {
-        $this->assertNull($this->csvReader->setDelimiter(','));
-    }
-
-    /**
-     * Test that it can set the enclosure.
-     *
-     * @return void
-     * @covers ::setEnclosure
-     */
-    public function testSetEnclosure()
-    {
-        $this->assertNull($this->csvReader->setEnclosure('"'));
-    }
-
-    /**
-     * Test that it can set the escape.
-     *
-     * @return void
-     * @covers ::setEscape
-     */
-    public function testSetEscape()
-    {
-        $this->assertNull($this->csvReader->setEscape('\\'));
-    }
-
-    /**
-     * Test that it can set the new line.
-     *
-     * @return void
-     * @covers ::setNewline
-     */
-    public function testSetNewline()
-    {
-        $this->assertNull($this->csvReader->setNewline(PHP_EOL));
-    }
-
-    /**
      * Test that it can process csv strings.
      *
      * @return void
+     * @covers ::setNewline
+     * @covers ::setEncoding
+     * @covers ::setDelimiter
+     * @covers ::setEnclosure
+     * @covers ::setEscape
      * @covers ::process
      * @covers ::parseHeader
      * @covers ::getCsvHeaders
      */
     public function testProcess()
     {
+        $this->csvReader->setEncoding(new Utf8Encoding());
         $this->csvReader->setNewline(PHP_EOL);
         $this->csvReader->setDelimiter(',');
+        $this->csvReader->setEscape('\\');
+        $this->csvReader->setEnclosure('"');
 
         $this->assertTrue($this->csvReader->process('header1,header2,header3,header4'));
     }
