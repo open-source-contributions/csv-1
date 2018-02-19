@@ -2,7 +2,6 @@
 
 namespace Odan\Test;
 
-use Odan\Csv\CsvReader;
 use PHPUnit\Framework\TestCase;
 use Odan\Encoding\IsoEncoding;
 
