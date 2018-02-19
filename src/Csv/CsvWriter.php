@@ -62,7 +62,7 @@ class CsvWriter
      */
     public function __construct($fileName)
     {
-        $this->setFilename($fileName);
+        $this->setFileName($fileName);
         $this->setEncoding(new IsoEncoding());
     }
 
@@ -84,7 +84,7 @@ class CsvWriter
      * @return void
      * @throws Exception
      */
-    public function setFilename($fileName)
+    public function setFileName($fileName)
     {
         if (empty($fileName)) {
             throw new RuntimeException("CSV filename required");
