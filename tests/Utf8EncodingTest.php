@@ -2,8 +2,8 @@
 
 namespace Odan\Test;
 
-use PHPUnit\Framework\TestCase;
 use Odan\Encoding\Utf8Encoding;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Utf8EncodingTest

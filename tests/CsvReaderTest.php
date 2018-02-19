@@ -111,7 +111,7 @@ class CsvReaderTest extends TestCase
     {
         $this->csvReader->setNewline("\n");
         $this->csvReader->setDelimiter(',');
-        $this->csvReader->process('header1,header2,header3,header4'."\n".'this,is,csv,content'."\n".'this,is,csv,content');
+        $this->csvReader->process('header1,header2,header3,header4' . "\n" . 'this,is,csv,content' . "\n" . 'this,is,csv,content');
         $result = $this->csvReader->fetch();
 
         $this->assertSame('this', $result['header1']);

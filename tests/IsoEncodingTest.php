@@ -2,8 +2,8 @@
 
 namespace Odan\Test;
 
-use PHPUnit\Framework\TestCase;
 use Odan\Encoding\IsoEncoding;
+use PHPUnit\Framework\TestCase;
 
 /**
  * IsoEncodingTest
@@ -61,7 +61,7 @@ class IsoEncodingTest extends TestCase
      */
     public function testEncodeWithIso85991Data()
     {
-        $data = file_get_contents(__DIR__.'/data_iso85991.txt');
+        $data = file_get_contents(__DIR__ . '/data_iso85991.txt');
         $isoEncoding = new IsoEncoding();
 
         $this->assertSame($data, $isoEncoding->encode($data));
