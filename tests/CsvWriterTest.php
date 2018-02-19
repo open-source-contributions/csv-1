@@ -22,7 +22,7 @@ class CsvWriterTest extends TestCase
     protected $root;
 
     /**
-     * @var csvWriter
+     * @var CsvWriter
      */
     protected $csvWriter;
 
