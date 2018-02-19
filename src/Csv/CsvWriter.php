@@ -45,7 +45,7 @@ class CsvWriter
      *
      * @var string
      */
-    protected $newline = "\r\n";
+    protected $newline = PHP_EOL;
 
     /**
      * Enclosure.
