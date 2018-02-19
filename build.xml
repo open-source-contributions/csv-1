@@ -32,16 +32,10 @@
     </target>
 
     <target name="phpstan" description="PHP Static Analysis Tool - discover bugs in your code without running it">
-        <mkdir dir="${basedir}/build"/>
-        <get src="https://github.com/phpstan/phpstan/releases/download/0.9.2/phpstan.phar"
-             dest="${basedir}/build/phpstan.phar" skipexisting="true"/>
-        <exec executable="php" searchpath="true" resolveexecutable="true" failonerror="true">
-            <arg value="${basedir}/build/phpstan.phar"/>
+        <exec executable="${basedir}/vendor/bin/phpstan${ext}" searchpath="true" resolveexecutable="true"
+              failonerror="true" taskname="phpstan">
+            <arg value="--level=5"/>
             <arg value="analyse"/>
-            <arg value="-l"/>
-            <arg value="5"/>
-            <arg value="-c"/>
-            <arg path="${basedir}/phpstan.neon"/>
             <arg value="src"/>
             <arg value="tests"/>
             <arg value="--no-interaction"/>

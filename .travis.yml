@@ -19,7 +19,7 @@ before_script:
   - cd $TRAVIS_BUILD_DIR
 
 script:
-  - vendor/bin/phpstan --level=4 analyse src
+  - ant phpstan
   - vendor/bin/phpunit --coverage-text --coverage-clover=coverage.clover
 
 after_success:
