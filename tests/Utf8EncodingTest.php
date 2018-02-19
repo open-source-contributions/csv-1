@@ -1,5 +1,7 @@
 <?php
 
+namespace Odan\Test;
+
 use PHPUnit\Framework\TestCase;
 use Odan\Encoding\Utf8Encoding;
 
