@@ -10,8 +10,8 @@ final class Utf8Encoding implements EncodingInterface
     /**
      * Encodes an ISO-8859-1 string to UTF-8.
      *
-     * @param mixed $data string or array
-     * @return mixed string or array
+     * @param mixed $data Data
+     * @return string Encoded data
      */
     public function encode($data)
     {

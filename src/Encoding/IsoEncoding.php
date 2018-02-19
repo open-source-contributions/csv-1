@@ -10,8 +10,8 @@ final class IsoEncoding implements EncodingInterface
     /**
      * Returns a ISO-8859-1 encoded string or array.
      *
-     * @param mixed $data string or array
-     * @return mixed string or array
+     * @param mixed $data Data
+     * @return string Encoded data
      */
     public function encode($data)
     {
