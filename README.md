@@ -2,12 +2,12 @@
  
 A Excel compatible CSV file reader and writer.
 
-[![Latest Version on Packagist](https://img.shields.io/github/release/selective/csv.svg)](https://github.com/selective/csv/releases)
+[![Latest Version on Packagist](https://img.shields.io/github/release/selective/csv.svg)](https://github.com/selective-php/csv/releases)
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg)](LICENSE.md)
-[![Build Status](https://travis-ci.org/selective/csv.svg?branch=master)](https://travis-ci.org/selective/csv)
-[![Coverage Status](https://scrutinizer-ci.com/g/selective/csv/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/selective/csv/code-structure)
-[![Quality Score](https://scrutinizer-ci.com/g/selective/csv/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/selective/csv/?branch=master)
-[![Total Downloads](https://img.shields.io/packagist/dt/selective/csv.svg)](https://packagist.org/packages/selective/csv)
+[![Build Status](https://travis-ci.org/selective-php/csv.svg?branch=master)](https://travis-ci.org/selective-php/csv)
+[![Coverage Status](https://scrutinizer-ci.com/g/selective-php/csv/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/selective-php/csv/code-structure)
+[![Quality Score](https://scrutinizer-ci.com/g/selective-php/csv/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/selective-php/csv/?branch=master)
+[![Total Downloads](https://img.shields.io/packagist/dt/selective-php/csv.svg)](https://packagist.org/packages/selective-php/csv)
 
 ## Installation
 
