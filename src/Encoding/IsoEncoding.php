@@ -1,6 +1,6 @@
 <?php
 
-namespace Odan\Encoding;
+namespace Selective\Encoding;
 
 /**
  * Class IsoEncoding

@@ -1,41 +1,41 @@
 {
-  "name": "odan/csv",
-  "type": "library",
-  "description": "A excel compatible CSV reader and writer",
-  "keywords": [
-    "csv",
-    "excel"
-  ],
-  "homepage": "https://github.com/odan/csv",
-  "license": "MIT",
-  "require": {
-    "php": ">=7.1",
-    "ext-xml": "*",
-    "ext-mbstring": "*"
-  },
-  "require-dev": {
-    "php": ">=7.1",
-    "phpunit/phpunit": "^6.5",
-    "mikey179/vfsStream": "^1.6",
-    "phpstan/phpstan": "^0.9"
-  },
-  "scripts": {
-    "test": "phpunit",
-    "test-coverage": "phpunit --coverage-clover build/logs/clover.xml --coverage-html build/coverage",
-    "check-style": "phpcs -p --standard=PSR2 --runtime-set ignore_errors_on_exit 1 --runtime-set ignore_warnings_on_exit 1 src tests",
-    "fix-style": "phpcbf -p --standard=PSR2 --runtime-set ignore_errors_on_exit 1 --runtime-set ignore_warnings_on_exit -n --no-patch 1 src tests"
-  },
-  "autoload": {
-    "psr-4": {
-      "Odan\\": "src"
+    "name": "selective/csv",
+    "type": "library",
+    "description": "A CSV reader and writer",
+    "keywords": [
+        "csv",
+        "excel"
+    ],
+    "homepage": "https://github.com/selective/csv",
+    "license": "MIT",
+    "require": {
+        "php": ">=7.1",
+        "ext-xml": "*",
+        "ext-mbstring": "*"
+    },
+    "require-dev": {
+        "php": ">=7.1",
+        "phpunit/phpunit": "^6.5",
+        "mikey179/vfsStream": "^1.6",
+        "phpstan/phpstan": "^0.9"
+    },
+    "scripts": {
+        "test": "phpunit",
+        "test-coverage": "phpunit --coverage-clover build/logs/clover.xml --coverage-html build/coverage",
+        "check-style": "phpcs -p --standard=PSR2 --runtime-set ignore_errors_on_exit 1 --runtime-set ignore_warnings_on_exit 1 src tests",
+        "fix-style": "phpcbf -p --standard=PSR2 --runtime-set ignore_errors_on_exit 1 --runtime-set ignore_warnings_on_exit -n --no-patch 1 src tests"
+    },
+    "autoload": {
+        "psr-4": {
+            "Selective\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Selective\\Test\\": "tests"
+        }
+    },
+    "config": {
+        "sort-packages": true
     }
-  },
-  "autoload-dev": {
-    "psr-4": {
-      "Odan\\Test\\": "tests"
-    }
-  },
-  "config": {
-    "sort-packages": true
-  }
 }

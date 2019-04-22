@@ -1,14 +1,14 @@
 <?php
 
-namespace Odan\Test;
+namespace Selective\Test;
 
-use Odan\Encoding\IsoEncoding;
+use Selective\Encoding\IsoEncoding;
 use PHPUnit\Framework\TestCase;
 
 /**
  * IsoEncodingTest
  *
- * @coversDefaultClass \Odan\Encoding\IsoEncoding
+ * @coversDefaultClass \Selective\Encoding\IsoEncoding
  */
 class IsoEncodingTest extends TestCase
 {

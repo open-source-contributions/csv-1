@@ -1,9 +1,9 @@
 <?php
 
-namespace Odan\Csv;
+namespace Selective\Csv;
 
-use Odan\Encoding\EncodingInterface;
-use Odan\Encoding\Utf8Encoding;
+use Selective\Encoding\EncodingInterface;
+use Selective\Encoding\Utf8Encoding;
 
 /**
  * CsvReader

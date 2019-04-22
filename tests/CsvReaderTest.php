@@ -1,9 +1,9 @@
 <?php
 
-namespace Odan\Test;
+namespace Selective\Test;
 
-use Odan\Csv\CsvReader;
-use Odan\Encoding\Utf8Encoding;
+use Selective\Csv\CsvReader;
+use Selective\Encoding\Utf8Encoding;
 use org\bovigo\vfs\vfsStream;
 use org\bovigo\vfs\vfsStreamDirectory;
 use PHPUnit\Framework\TestCase;
@@ -11,7 +11,7 @@ use PHPUnit\Framework\TestCase;
 /**
  * CsvReaderTest
  *
- * @coversDefaultClass \Odan\Csv\CsvReader
+ * @coversDefaultClass \Selective\Csv\CsvReader
  */
 class CsvReaderTest extends TestCase
 {

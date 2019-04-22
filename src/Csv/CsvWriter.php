@@ -1,9 +1,9 @@
 <?php
 
-namespace Odan\Csv;
+namespace Selective\Csv;
 
-use Odan\Encoding\EncodingInterface;
-use Odan\Encoding\IsoEncoding;
+use Selective\Encoding\EncodingInterface;
+use Selective\Encoding\IsoEncoding;
 use RuntimeException;
 
 /**

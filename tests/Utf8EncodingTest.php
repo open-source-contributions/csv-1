@@ -1,14 +1,14 @@
 <?php
 
-namespace Odan\Test;
+namespace Selective\Test;
 
-use Odan\Encoding\Utf8Encoding;
+use Selective\Encoding\Utf8Encoding;
 use PHPUnit\Framework\TestCase;
 
 /**
  * Utf8EncodingTest
  *
- * @coversDefaultClass \Odan\Encoding\Utf8Encoding
+ * @coversDefaultClass \Selective\Encoding\Utf8Encoding
  */
 class Utf8EncodingTest extends TestCase
 {
