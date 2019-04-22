@@ -6,7 +6,7 @@
         "csv",
         "excel"
     ],
-    "homepage": "https://github.com/selective/csv",
+    "homepage": "https://github.com/selective-php/csv",
     "license": "MIT",
     "require": {
         "php": ">=7.1",
