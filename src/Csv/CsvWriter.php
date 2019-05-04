@@ -120,6 +120,7 @@ class CsvWriter
      * Set enclosure.
      *
      * @param string $enclosure enclosure
+     *
      * @return void
      */
     public function setEnclosure($enclosure)
@@ -133,13 +134,19 @@ class CsvWriter
      * @param array $columns Columns
      * @return bool Status
      */
-    public function putColumns($columns)
+    public function putColumns(array $columns): bool
     {
         $this->columns = array();
         $row = array();
+
         foreach ($columns as $fields) {
-            $row[] = $fields['text'];
+            if (isset($fields['text'])) {
+                $row[] = $fields['text'];
+            } else {
+                $row[] = $fields;
+            }
         }
+
         $result = $this->putRow($row);
         $this->columns = $columns;
 
