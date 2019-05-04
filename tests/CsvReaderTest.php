@@ -39,7 +39,6 @@ class CsvReaderTest extends TestCase
      * Test create object.
      *
      * @return void
-     * @covers ::__construct
      */
     public function testInstance()
     {
@@ -50,14 +49,6 @@ class CsvReaderTest extends TestCase
      * Test that it can process csv strings.
      *
      * @return void
-     * @covers ::setNewline
-     * @covers ::setEncoding
-     * @covers ::setDelimiter
-     * @covers ::setEnclosure
-     * @covers ::setEscape
-     * @covers ::process
-     * @covers ::parseHeader
-     * @covers ::getCsvHeaders
      */
     public function testProcess()
     {
@@ -74,9 +65,6 @@ class CsvReaderTest extends TestCase
      * Test that it can process csv strings when preventing duplicate csv headers.
      *
      * @return void
-     * @covers ::process
-     * @covers ::parseHeader
-     * @covers ::getCsvHeaders
      */
     public function testProcessWithPreventingDuplicateCsvHeader()
     {
@@ -90,7 +78,6 @@ class CsvReaderTest extends TestCase
      * Test that it can return null when fetching one row csv strings.
      *
      * @return void
-     * @covers ::fetch
      */
     public function testFetchWithOneRowData()
     {
@@ -105,13 +92,14 @@ class CsvReaderTest extends TestCase
      * Test that it can fetch multiple row csv strings.
      *
      * @return void
-     * @covers ::fetch
      */
     public function testFetchWithMultipleRowData()
     {
         $this->csvReader->setNewline("\n");
         $this->csvReader->setDelimiter(',');
-        $this->csvReader->process('header1,header2,header3,header4' . "\n" . 'this,is,csv,content' . "\n" . 'this,is,csv,content');
+        $this->csvReader->process(
+            'header1,header2,header3,header4' . "\n" . 'this,is,csv,content' . "\n" . 'this,is,csv,content'
+        );
         $result = $this->csvReader->fetch();
 
         $this->assertSame('this', $result['header1']);

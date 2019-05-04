@@ -15,8 +15,7 @@ class Utf8EncodingTest extends TestCase
     /**
      * Test encode the utf8 encoding data.
      *
-     * @return mixed
-     * @covers ::encode
+     * @return void
      */
     public function testEncode()
     {

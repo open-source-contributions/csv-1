@@ -16,7 +16,6 @@ class IsoEncodingTest extends TestCase
      * Test encode the null data.
      *
      * @return mixed
-     * @covers ::encode
      */
     public function testEncodeWithNullData()
     {
@@ -28,8 +27,7 @@ class IsoEncodingTest extends TestCase
     /**
      * Test encode the empty data.
      *
-     * @return mixed
-     * @covers ::encode
+     * @return void
      */
     public function testEncodeWithEmptyData()
     {
@@ -42,8 +40,7 @@ class IsoEncodingTest extends TestCase
     /**
      * Test encode the utf8 encoding data.
      *
-     * @return mixed
-     * @covers ::encode
+     * @return void
      */
     public function testEncodeWithUtf8Data()
     {
@@ -56,8 +53,7 @@ class IsoEncodingTest extends TestCase
     /**
      * Test encode the ISO-85991 encoding data.
      *
-     * @return mixed
-     * @covers ::encode
+     * @return void
      */
     public function testEncodeWithIso85991Data()
     {

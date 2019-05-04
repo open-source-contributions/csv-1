@@ -13,18 +13,18 @@ use PHPUnit\Framework\TestCase;
  *
  * @coversDefaultClass \Selective\Csv\CsvWriter
  */
-class CsvWriterTest extends TestCase
+final class CsvWriterTest extends TestCase
 {
 
     /**
      * @var vfsStreamDirectory
      */
-    protected $root;
+    private $root;
 
     /**
      * @var CsvWriter
      */
-    protected $csvWriter;
+    private $csvWriter;
 
     /**
      * Setup
@@ -40,7 +40,6 @@ class CsvWriterTest extends TestCase
      * Test create object.
      *
      * @return void
-     * @covers ::__construct
      */
     public function testInstance()
     {
@@ -51,8 +50,9 @@ class CsvWriterTest extends TestCase
      * Test that it can throw RuntimeException when setting the null file name.
      *
      * @throws RuntimeException
-     * @covers ::setFileName
      * @expectedException RuntimeException
+     *
+     * @return void
      */
     public function testSetFileNameWithNullFileName()
     {
@@ -62,15 +62,29 @@ class CsvWriterTest extends TestCase
     /**
      * Test that it can put the columns.
      *
-     * @return bool
-     * @covers ::setFileName
-     * @covers ::setEncoding
-     * @covers ::setEnclosure
-     * @covers ::setNewline
-     * @covers ::setDelimiter
-     * @covers ::putColumns
+     * @return void
      */
     public function testPutColumns()
+    {
+        $this->csvWriter->setFileName(vfsStream::url('root/output.csv'));
+        $this->csvWriter->setEncoding(new Utf8Encoding());
+        $this->csvWriter->setDelimiter(',');
+        $this->csvWriter->setEnclosure('"');
+        $this->csvWriter->setNewline("\r\n");
+
+        $this->assertTrue($this->csvWriter->putColumns([
+            'header1',
+            'header2',
+            'header3',
+        ]));
+    }
+
+    /**
+     * Test that it can put the columns.
+     *
+     * @return void
+     */
+    public function testPutColumnsOld()
     {
         $this->csvWriter->setFileName(vfsStream::url('root/output.csv'));
         $this->csvWriter->setEncoding(new Utf8Encoding());
@@ -88,9 +102,7 @@ class CsvWriterTest extends TestCase
     /**
      * Test that it can put the single row.
      *
-     * @return bool
-     * @covers ::putRow
-     * @covers ::rowToCsv
+     * @return void
      */
     public function testPutRow()
     {
@@ -102,9 +114,7 @@ class CsvWriterTest extends TestCase
     /**
      * Test that it can put the multiple rows.
      *
-     * @return bool
-     * @covers ::putRows
-     * @covers ::rowToCsv
+     * @return void
      */
     public function testPutRows()
     {
@@ -117,9 +127,7 @@ class CsvWriterTest extends TestCase
     /**
      * Test that it can put the multiple rows and set the columns.
      *
-     * @return bool
-     * @covers ::putRows
-     * @covers ::rowToCsv
+     * @return void
      */
     public function testPutRowsWithSpecificColumns()
     {
@@ -139,8 +147,7 @@ class CsvWriterTest extends TestCase
     /**
      * Test that it can set the escape/quote value to CSV string.
      *
-     * @return bool
-     * @covers ::escape
+     * @return void
      */
     public function testEscape()
     {
@@ -150,8 +157,7 @@ class CsvWriterTest extends TestCase
     /**
      * Test that it can set the escape/quote value to CSV string when the value is null or empty.
      *
-     * @return bool
-     * @covers ::escape
+     * @return void
      */
     public function testEscapeWithEmptyOrNullValue()
     {
