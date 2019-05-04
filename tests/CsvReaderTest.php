@@ -2,20 +2,19 @@
 
 namespace Selective\Test;
 
-use Selective\Csv\CsvReader;
-use Selective\Encoding\Utf8Encoding;
 use org\bovigo\vfs\vfsStream;
 use org\bovigo\vfs\vfsStreamDirectory;
 use PHPUnit\Framework\TestCase;
+use Selective\Csv\CsvReader;
+use Selective\Encoding\Utf8Encoding;
 
 /**
- * CsvReaderTest
+ * CsvReaderTest.
  *
  * @coversDefaultClass \Selective\Csv\CsvReader
  */
 class CsvReaderTest extends TestCase
 {
-
     /**
      * @var vfsStreamDirectory
      */
@@ -27,7 +26,7 @@ class CsvReaderTest extends TestCase
     protected $csvReader;
 
     /**
-     * Setup
+     * Setup.
      */
     protected function setUp()
     {

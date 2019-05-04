@@ -2,20 +2,19 @@
 
 namespace Selective\Test;
 
-use Selective\Csv\CsvWriter;
-use Selective\Encoding\Utf8Encoding;
 use org\bovigo\vfs\vfsStream;
 use org\bovigo\vfs\vfsStreamDirectory;
 use PHPUnit\Framework\TestCase;
+use Selective\Csv\CsvWriter;
+use Selective\Encoding\Utf8Encoding;
 
 /**
- * CsvWriterTest
+ * CsvWriterTest.
  *
  * @coversDefaultClass \Selective\Csv\CsvWriter
  */
 final class CsvWriterTest extends TestCase
 {
-
     /**
      * @var vfsStreamDirectory
      */
@@ -27,7 +26,7 @@ final class CsvWriterTest extends TestCase
     private $csvWriter;
 
     /**
-     * Setup
+     * Setup.
      */
     protected function setUp()
     {
@@ -50,7 +49,7 @@ final class CsvWriterTest extends TestCase
      * Test that it can throw RuntimeException when setting the null file name.
      *
      * @throws RuntimeException
-     * @expectedException RuntimeException
+     * @expectedException \RuntimeException
      *
      * @return void
      */
@@ -107,7 +106,7 @@ final class CsvWriterTest extends TestCase
     public function testPutRow()
     {
         $this->assertTrue($this->csvWriter->putRow([
-            'this,is,csv,row'
+            'this,is,csv,row',
         ]));
     }
 

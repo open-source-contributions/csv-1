@@ -2,22 +2,21 @@
 
 namespace Selective\Csv;
 
+use RuntimeException;
 use Selective\Encoding\EncodingInterface;
 use Selective\Encoding\IsoEncoding;
-use RuntimeException;
 
 /**
  * Excel friendly CSV file writer.
  */
 class CsvWriter
 {
-
     /**
-     * Encoding
+     * Encoding.
      *
      * @var EncodingInterface
      */
-    protected $encoding = null;
+    protected $encoding;
 
     /**
      * Filename.
@@ -31,7 +30,7 @@ class CsvWriter
      *
      * @var array
      */
-    protected $columns = array();
+    protected $columns = [];
 
     /**
      * Delimiter.
@@ -57,12 +56,14 @@ class CsvWriter
     /**
      * Constructor.
      *
-     * @param string $fileName fileName
-     * @throws Exception
+     * @param string|null $fileName The CSV filename (optional)
      */
-    public function __construct($fileName)
+    public function __construct(string $fileName = null)
     {
-        $this->setFileName($fileName);
+        if ($fileName !== null) {
+            $this->setFileName($fileName);
+        }
+
         $this->setEncoding(new IsoEncoding());
     }
 
@@ -70,6 +71,7 @@ class CsvWriter
      * Set encoding.
      *
      * @param EncodingInterface $encoding encoding (utf8)
+     *
      * @return void
      */
     public function setEncoding(EncodingInterface $encoding): void
@@ -81,13 +83,15 @@ class CsvWriter
      * Set filename.
      *
      * @param string $fileName fileName
-     * @return void
+     *
      * @throws Exception
+     *
+     * @return void
      */
-    public function setFileName($fileName)
+    public function setFileName(string $fileName)
     {
         if (empty($fileName)) {
-            throw new RuntimeException("CSV filename required");
+            throw new RuntimeException('CSV filename required');
         }
         $this->fileName = $fileName;
         touch($this->fileName);
@@ -98,6 +102,7 @@ class CsvWriter
      * Set delimiter.
      *
      * @param string $delimiter delimiter
+     *
      * @return void
      */
     public function setDelimiter($delimiter)
@@ -109,6 +114,7 @@ class CsvWriter
      * Set newline.
      *
      * @param string $newline newline
+     *
      * @return void
      */
     public function setNewline($newline)
@@ -132,12 +138,13 @@ class CsvWriter
      * Put columns to file.
      *
      * @param array $columns Columns
+     *
      * @return bool Status
      */
     public function putColumns(array $columns): bool
     {
-        $this->columns = array();
-        $row = array();
+        $this->columns = [];
+        $row = [];
 
         foreach ($columns as $fields) {
             if (isset($fields['text'])) {
@@ -157,17 +164,19 @@ class CsvWriter
      * Insert a single row to CSV file.
      *
      * @param array $row row
+     *
      * @return bool Status
      */
     public function putRow($row)
     {
-        return $this->putRows(array($row));
+        return $this->putRows([$row]);
     }
 
     /**
      * Append rows to csv file.
      *
      * @param array $rows rows
+     *
      * @return bool Status
      */
     public function putRows(array $rows)
@@ -185,13 +194,14 @@ class CsvWriter
      * Convert row to CSV string.
      *
      * @param array $row row
+     *
      * @return string csv
      */
     protected function rowToCsv($row)
     {
         if (!empty($this->columns)) {
             // Mapping of columns to the correct position
-            $csvRows = array();
+            $csvRows = [];
             foreach ($this->columns as $colIdx => $colValue) {
                 $rowValue = '';
                 if (isset($row[$colIdx])) {
@@ -202,7 +212,7 @@ class CsvWriter
             $result = implode($this->delimiter, $csvRows) . $this->newline;
         } else {
             // no mapping
-            $row = array_map(array($this, 'escape'), $row);
+            $row = array_map([$this, 'escape'], $row);
             $result = implode($this->delimiter, $row) . $this->newline;
         }
 
@@ -214,6 +224,7 @@ class CsvWriter
      *
      * @param string|null $value value
      * @param string $enclosure enclosure
+     *
      * @return mixed escaped value
      */
     public function escape($value, $enclosure = '"')

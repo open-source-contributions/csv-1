@@ -2,11 +2,11 @@
 
 namespace Selective\Test;
 
-use Selective\Encoding\IsoEncoding;
 use PHPUnit\Framework\TestCase;
+use Selective\Encoding\IsoEncoding;
 
 /**
- * IsoEncodingTest
+ * IsoEncodingTest.
  *
  * @coversDefaultClass \Selective\Encoding\IsoEncoding
  */

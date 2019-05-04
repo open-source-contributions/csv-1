@@ -2,11 +2,11 @@
 
 namespace Selective\Test;
 
-use Selective\Encoding\Utf8Encoding;
 use PHPUnit\Framework\TestCase;
+use Selective\Encoding\Utf8Encoding;
 
 /**
- * Utf8EncodingTest
+ * Utf8EncodingTest.
  *
  * @coversDefaultClass \Selective\Encoding\Utf8Encoding
  */

@@ -6,62 +6,61 @@ use Selective\Encoding\EncodingInterface;
 use Selective\Encoding\Utf8Encoding;
 
 /**
- * CsvReader
+ * CSV Reader.
  */
 class CsvReader
 {
-
     /**
-     * Encoding
+     * Encoding.
      *
      * @var EncodingInterface
      */
-    protected $encoding = null;
+    protected $encoding;
 
     /**
-     * Delimiter
+     * Delimiter.
      *
      * @var string
      */
-    protected $delimiter = ";";
+    protected $delimiter = ';';
 
     /**
-     * Enclosure
+     * Enclosure.
      *
      * @var string
      */
     protected $enclosure = '"';
 
     /**
-     * Escape
+     * Escape.
      *
      * @var string
      */
-    protected $escape = "\\";
+    protected $escape = '\\';
 
     /**
-     * New line
+     * New line.
      *
      * @var string
      */
     protected $newline = "\n";
 
     /**
-     * Headers
+     * Headers.
      *
      * @var array
      */
-    protected $headers = array();
+    protected $headers = [];
 
     /**
-     * Header count
+     * Header count.
      *
      * @var int
      */
     protected $headerCount = 0;
 
     /**
-     * Lines
+     * Lines.
      *
      * @var array|null
      */
@@ -79,6 +78,7 @@ class CsvReader
      * Set encoding.
      *
      * @param EncodingInterface $encoding encoding (utf8)
+     *
      * @return void
      */
     public function setEncoding(EncodingInterface $encoding)
@@ -90,9 +90,10 @@ class CsvReader
      * Set delimiter.
      *
      * @param string $delimiter delimiter (;)
+     *
      * @return void
      */
-    public function setDelimiter($delimiter)
+    public function setDelimiter(string $delimiter)
     {
         $this->delimiter = $delimiter;
     }
@@ -101,9 +102,10 @@ class CsvReader
      * Set enclosure.
      *
      * @param string $enclosure enclosure (")
+     *
      * @return void
      */
-    public function setEnclosure($enclosure)
+    public function setEnclosure(string $enclosure)
     {
         $this->enclosure = $enclosure;
     }
@@ -112,9 +114,10 @@ class CsvReader
      * Set escape.
      *
      * @param string $escape escape (\\)
+     *
      * @return void
      */
-    public function setEscape($escape)
+    public function setEscape(string $escape)
     {
         $this->escape = $escape;
     }
@@ -123,9 +126,10 @@ class CsvReader
      * Set newline.
      *
      * @param string $newline escape (\n)
+     *
      * @return void
      */
-    public function setNewline($newline)
+    public function setNewline(string $newline)
     {
         $this->newline = $newline;
     }
@@ -134,13 +138,14 @@ class CsvReader
      * Process CSV content.
      *
      * @param string $csv CSV content
-     * @return bool Status
+     *
+     * @return bool Success
      */
     public function process(string $csv): bool
     {
         $this->lines = str_getcsv($csv, $this->newline);
         reset($this->lines);
-        $this->headers = array();
+        $this->headers = [];
         $this->headerCount = 0;
         $this->parseHeader();
 
@@ -148,7 +153,7 @@ class CsvReader
     }
 
     /**
-     * Parse header
+     * Parse header.
      *
      * @return void
      */
@@ -194,11 +199,13 @@ class CsvReader
      * Get CSV headers.
      *
      * @param array $headers Headers
+     *
      * @return array Save headers
      */
-    private function getCsvHeaders($headers)
+    private function getCsvHeaders(array $headers): array
     {
-        $cache = array();
+        $cache = [];
+
         foreach ($headers as $headerIndex => $header) {
             if (isset($cache[$header])) {
                 // Prevent duplicate fields. Increment field name.
