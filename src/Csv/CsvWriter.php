@@ -84,7 +84,7 @@ class CsvWriter
      *
      * @param string $fileName fileName
      *
-     * @throws Exception
+     * @throws RuntimeException
      *
      * @return void
      */

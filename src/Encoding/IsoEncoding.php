@@ -12,7 +12,7 @@ final class IsoEncoding implements EncodingInterface
      *
      * @param mixed $data Data
      *
-     * @return string Encoded data
+     * @return string|null Encoded data
      */
     public function encode($data)
     {

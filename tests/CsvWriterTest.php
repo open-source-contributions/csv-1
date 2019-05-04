@@ -5,6 +5,7 @@ namespace Selective\Test;
 use org\bovigo\vfs\vfsStream;
 use org\bovigo\vfs\vfsStreamDirectory;
 use PHPUnit\Framework\TestCase;
+use RuntimeException;
 use Selective\Csv\CsvWriter;
 use Selective\Encoding\Utf8Encoding;
 
@@ -48,13 +49,13 @@ final class CsvWriterTest extends TestCase
     /**
      * Test that it can throw RuntimeException when setting the null file name.
      *
-     * @throws RuntimeException
-     * @expectedException \RuntimeException
+     * @throws \RuntimeException
      *
      * @return void
      */
     public function testSetFileNameWithNullFileName()
     {
+        $this->expectException(RuntimeException::class);
         $this->csvWriter->setFileName('');
     }
 

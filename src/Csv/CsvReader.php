@@ -62,9 +62,9 @@ class CsvReader
     /**
      * Lines.
      *
-     * @var array|null
+     * @var array
      */
-    protected $lines = null;
+    protected $lines = [];
 
     /**
      * Constructor.
@@ -159,15 +159,20 @@ class CsvReader
      */
     private function parseHeader()
     {
+        $this->headers = [];
+        $this->headerCount = 0;
+
         $row = $this->fetch();
-        $this->headers = $this->getCsvHeaders($row);
-        $this->headerCount = count($this->headers);
+        if ($row !== null) {
+            $this->headers = $this->getCsvHeaders($row);
+            $this->headerCount = count($this->headers);
+        }
     }
 
     /**
      * Fetch next row.
      *
-     * @return array|null
+     * @return array|null The next row or null
      */
     public function fetch()
     {
@@ -185,8 +190,8 @@ class CsvReader
         $values = str_getcsv($line, $this->delimiter, $this->enclosure, $this->escape);
 
         // Map values to field names
-        if ($this->headerCount == count($values)) {
-            $row = array_combine($this->headers, $values);
+        if ($this->headerCount === count($values)) {
+            $row = array_combine($this->headers, $values) ?: [];
         } else {
             // The arrays have unequal length!
             $row = $values;
