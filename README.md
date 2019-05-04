@@ -50,9 +50,10 @@ $csvWriter->setDelimiter(';');
 $csvWriter->setEnclosure('"');
 $csvWriter->setNewline("\n");
         
-$columns = [];
-$columns['id'] = ['text' => 'ID'];
-$columns['title'] = ['text' => 'My fancy title'];
+$columns = [
+    'id' => 'ID',
+    'title' => 'My fancy title',
+];
 
 $rows = [];
 $rows[] = [
