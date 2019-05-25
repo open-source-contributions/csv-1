@@ -76,3 +76,6 @@ The MIT License (MIT). Please see [License File](LICENSE) for more information.
 [PSR-2]: https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-2-coding-style-guide.md
 [PSR-4]: https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-4-autoloader.md
 
+## Similar libraries
+
+* [thephpleague/csv](https://github.com/thephpleague/csv)
