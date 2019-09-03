@@ -53,7 +53,7 @@ $csvWriter->setNewline("\n");
 // Insert columns
 $csvWriter->putColumns([
     'id' => 'ID',
-    'title' => 'My fancy title',
+    'title' => 'Title',
 ]);
 
 // Insert rows
@@ -61,6 +61,14 @@ $csvWriter->putRows([
     ['id' => 1, 'title' => 'Yes'],
     ['id' => 2, 'title' => 'No'],
 ]);
+```
+
+Result:
+
+```csv
+"ID";"My fancy title"
+"1";"Yes"
+"2";"No"
 ```
 
 ## License
