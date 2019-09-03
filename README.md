@@ -50,21 +50,19 @@ $csvWriter->setDelimiter(';');
 $csvWriter->setEnclosure('"');
 $csvWriter->setNewline("\n");
         
-$columns = [
+// Add columns
+$csvWriter->putColumns([
     'id' => 'ID',
     'title' => 'My fancy title',
-];
+]);
 
+// Add rows
 $rows = [];
 $rows[] = [
     ['id' => 1, 'title' => 'Yes'],
     ['id' => 2, 'title' => 'No'],
 ];
 
-// Add columns
-$csvWriter->putColumns($columns);
-
-// Add rows
 $csvWriter->putRows($rows);
 ```
 
