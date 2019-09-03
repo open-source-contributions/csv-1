@@ -63,10 +63,10 @@ $csvWriter->putRows([
 ]);
 ```
 
-Result:
+**Output**
 
 ```csv
-"ID";"My fancy title"
+"ID";"Title"
 "1";"Yes"
 "2";"No"
 ```
