@@ -50,22 +50,25 @@ $csvWriter->setDelimiter(';');
 $csvWriter->setEnclosure('"');
 $csvWriter->setNewline("\n");
         
-$columns = [
+// Insert columns
+$csvWriter->putColumns([
     'id' => 'ID',
-    'title' => 'My fancy title',
-];
+    'title' => 'Title',
+]);
 
-$rows = [];
-$rows[] = [
+// Insert rows
+$csvWriter->putRows([
     ['id' => 1, 'title' => 'Yes'],
     ['id' => 2, 'title' => 'No'],
-];
+]);
+```
 
-// Add columns
-$csvWriter->putColumns($columns);
+**Output**
 
-// Add rows
-$csvWriter->putRows($rows);
+```csv
+"ID";"Title"
+"1";"Yes"
+"2";"No"
 ```
 
 ## License
@@ -76,3 +79,6 @@ The MIT License (MIT). Please see [License File](LICENSE) for more information.
 [PSR-2]: https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-2-coding-style-guide.md
 [PSR-4]: https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-4-autoloader.md
 
+## Similar libraries
+
+* [thephpleague/csv](https://github.com/thephpleague/csv)
