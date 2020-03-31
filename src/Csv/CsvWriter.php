@@ -205,14 +205,16 @@ class CsvWriter
             foreach ($this->columns as $colIdx => $colValue) {
                 $rowValue = '';
                 if (isset($row[$colIdx])) {
-                    $rowValue = $this->escape($row[$colIdx]);
+                    $rowValue = $this->escape($row[$colIdx], $this->enclosure);
                 }
                 $csvRows[] = $rowValue;
             }
             $result = implode($this->delimiter, $csvRows) . $this->newline;
         } else {
             // no mapping
-            $row = array_map([$this, 'escape'], $row);
+            foreach ($row as $index => $rowValue) {
+                $row[$index] = $this->escape($rowValue, $this->enclosure);
+            }
             $result = implode($this->delimiter, $row) . $this->newline;
         }
 
