@@ -1,10 +1,10 @@
 # CSV
- 
+
 A Excel compatible CSV file reader and writer.
 
 [![Latest Version on Packagist](https://img.shields.io/github/release/selective-php/csv.svg)](https://packagist.org/packages/selective/csv)
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg)](LICENSE.md)
-[![Build Status](https://travis-ci.org/selective-php/csv.svg?branch=master)](https://travis-ci.org/selective-php/csv)
+[![Build Status](https://github.com/selective-php/csv/workflows/php/badge.svg)](https://github.com/selective-php/csv/actions)
 [![Coverage Status](https://scrutinizer-ci.com/g/selective-php/csv/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/selective-php/csv/code-structure)
 [![Quality Score](https://scrutinizer-ci.com/g/selective-php/csv/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/selective-php/csv/?branch=master)
 [![Total Downloads](https://img.shields.io/packagist/dt/selective/csv.svg)](https://packagist.org/packages/selective/csv/stats)
@@ -49,7 +49,7 @@ $csvWriter = new \Selective\Csv\CsvWriter($outputFile);
 $csvWriter->setDelimiter(';');
 $csvWriter->setEnclosure('"');
 $csvWriter->setNewline("\n");
-        
+
 // Insert columns
 $csvWriter->putColumns([
     'id' => 'ID',
