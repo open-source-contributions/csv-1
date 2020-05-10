@@ -3,18 +3,18 @@
 namespace Selective\Encoding;
 
 /**
- * Class IsoEncoding.
+ * ISO Encoding.
  */
 final class IsoEncoding implements EncodingInterface
 {
     /**
      * Returns a ISO-8859-1 encoded string or array.
      *
-     * @param mixed $data Data
+     * @param string|null $data Data
      *
      * @return string|null Encoded data
      */
-    public function encode($data)
+    public function encode(?string $data): ?string
     {
         if ($data === null || $data === '') {
             return $data;
