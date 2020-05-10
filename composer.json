@@ -25,7 +25,7 @@
         "test-coverage": "phpunit --configuration phpunit.xml --coverage-clover build/logs/clover.xml --coverage-html build/coverage",
         "check-style": "phpcs --standard=phpcs.xml",
         "fix-style": "phpcbf --standard=phpcs.xml",
-        "phpstan": "phpstan analyse src tests --level=max -c phpstan.neon --no-progress",
+        "phpstan": "phpstan analyse src --level=max -c phpstan.neon --no-progress",
         "lint": "phplint ./ --exclude=vendor --no-interaction --no-cache",
         "install-cs": "php -r \"@mkdir('build'); copy('https://cs.symfony.com/download/php-cs-fixer-v2.phar', 'build/php-cs-fixer-v2.phar');\"",
         "fix-cs": "php build/php-cs-fixer-v2.phar fix --config=.cs.php",
