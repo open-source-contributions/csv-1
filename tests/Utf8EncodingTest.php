@@ -17,7 +17,7 @@ class Utf8EncodingTest extends TestCase
      *
      * @return void
      */
-    public function testEncode()
+    public function testEncode(): void
     {
         $data = 'utf8_data';
         $utf8Encode = new Utf8Encoding();

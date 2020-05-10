@@ -29,7 +29,7 @@ final class CsvWriterTest extends TestCase
     /**
      * Setup.
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->root = vfsStream::setup('root');
         $file = vfsStream::url('root/output.csv');
@@ -41,7 +41,7 @@ final class CsvWriterTest extends TestCase
      *
      * @return void
      */
-    public function testInstance()
+    public function testInstance(): void
     {
         $this->assertInstanceOf(CsvWriter::class, $this->csvWriter);
     }
@@ -53,7 +53,7 @@ final class CsvWriterTest extends TestCase
      *
      * @return void
      */
-    public function testSetFileNameWithNullFileName()
+    public function testSetFileNameWithNullFileName(): void
     {
         $this->expectException(RuntimeException::class);
         $this->csvWriter->setFileName('');
@@ -64,7 +64,7 @@ final class CsvWriterTest extends TestCase
      *
      * @return void
      */
-    public function testPutColumns()
+    public function testPutColumns(): void
     {
         $this->csvWriter->setFileName(vfsStream::url('root/output.csv'));
         $this->csvWriter->setEncoding(new Utf8Encoding());
@@ -84,7 +84,7 @@ final class CsvWriterTest extends TestCase
      *
      * @return void
      */
-    public function testPutColumnsOld()
+    public function testPutColumnsOld(): void
     {
         $this->csvWriter->setFileName(vfsStream::url('root/output.csv'));
         $this->csvWriter->setEncoding(new Utf8Encoding());
@@ -104,7 +104,7 @@ final class CsvWriterTest extends TestCase
      *
      * @return void
      */
-    public function testPutRow()
+    public function testPutRow(): void
     {
         $this->assertTrue($this->csvWriter->putRow([
             'this,is,csv,row',
@@ -116,7 +116,7 @@ final class CsvWriterTest extends TestCase
      *
      * @return void
      */
-    public function testPutRows()
+    public function testPutRows(): void
     {
         $this->assertTrue($this->csvWriter->putRows([
             ['this,is,csv,first,row'],
@@ -129,7 +129,7 @@ final class CsvWriterTest extends TestCase
      *
      * @return void
      */
-    public function testPutRowsWithSpecificColumns()
+    public function testPutRowsWithSpecificColumns(): void
     {
         $this->csvWriter->putColumns([
             ['text' => 'header1'],
@@ -149,7 +149,7 @@ final class CsvWriterTest extends TestCase
      *
      * @return void
      */
-    public function testEscape()
+    public function testEscape(): void
     {
         $this->assertSame('"\""\"""', $this->csvWriter->escape('\"\"'));
     }
@@ -159,7 +159,7 @@ final class CsvWriterTest extends TestCase
      *
      * @return void
      */
-    public function testEscapeWithEmptyOrNullValue()
+    public function testEscapeWithEmptyOrNullValue(): void
     {
         $this->assertSame('""', $this->csvWriter->escape(''));
         $this->assertSame('""', $this->csvWriter->escape(null));

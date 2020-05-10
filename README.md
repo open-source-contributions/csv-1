@@ -17,7 +17,7 @@ composer require selective/csv
 
 ## Requirements
 
-* PHP >= 7.1
+* PHP 7.2+
 
 ## Reading a CSV file
 

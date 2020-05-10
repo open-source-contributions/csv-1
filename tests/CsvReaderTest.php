@@ -28,7 +28,7 @@ class CsvReaderTest extends TestCase
     /**
      * Setup.
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->root = vfsStream::setup('root');
         $this->csvReader = new CsvReader();
@@ -39,7 +39,7 @@ class CsvReaderTest extends TestCase
      *
      * @return void
      */
-    public function testInstance()
+    public function testInstance(): void
     {
         $this->assertInstanceOf(CsvReader::class, $this->csvReader);
     }
@@ -49,7 +49,7 @@ class CsvReaderTest extends TestCase
      *
      * @return void
      */
-    public function testProcess()
+    public function testProcess(): void
     {
         $this->csvReader->setEncoding(new Utf8Encoding());
         $this->csvReader->setNewline("\n");
@@ -65,7 +65,7 @@ class CsvReaderTest extends TestCase
      *
      * @return void
      */
-    public function testProcessWithPreventingDuplicateCsvHeader()
+    public function testProcessWithPreventingDuplicateCsvHeader(): void
     {
         $this->csvReader->setNewline("\n");
         $this->csvReader->setDelimiter(',');
@@ -78,7 +78,7 @@ class CsvReaderTest extends TestCase
      *
      * @return void
      */
-    public function testFetchWithOneRowData()
+    public function testFetchWithOneRowData(): void
     {
         $this->csvReader->setNewline("\n");
         $this->csvReader->setDelimiter(',');
@@ -92,7 +92,7 @@ class CsvReaderTest extends TestCase
      *
      * @return void
      */
-    public function testFetchWithMultipleRowData()
+    public function testFetchWithMultipleRowData(): void
     {
         $this->csvReader->setNewline("\n");
         $this->csvReader->setDelimiter(',');

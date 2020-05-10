@@ -15,9 +15,9 @@ class IsoEncodingTest extends TestCase
     /**
      * Test encode the null data.
      *
-     * @return mixed
+     * @return void
      */
-    public function testEncodeWithNullData()
+    public function testEncodeWithNullData(): void
     {
         $isoEncoding = new IsoEncoding();
 
@@ -29,7 +29,7 @@ class IsoEncodingTest extends TestCase
      *
      * @return void
      */
-    public function testEncodeWithEmptyData()
+    public function testEncodeWithEmptyData(): void
     {
         $data = '';
         $isoEncoding = new IsoEncoding();
@@ -42,7 +42,7 @@ class IsoEncodingTest extends TestCase
      *
      * @return void
      */
-    public function testEncodeWithUtf8Data()
+    public function testEncodeWithUtf8Data(): void
     {
         $data = 'This is the utf-8 encoding data';
         $isoEncoding = new IsoEncoding();
@@ -55,7 +55,7 @@ class IsoEncodingTest extends TestCase
      *
      * @return void
      */
-    public function testEncodeWithIso85991Data()
+    public function testEncodeWithIso85991Data(): void
     {
         $data = file_get_contents(__DIR__ . '/data_iso85991.txt');
         $isoEncoding = new IsoEncoding();
