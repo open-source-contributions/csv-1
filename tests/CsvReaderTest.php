@@ -57,7 +57,8 @@ class CsvReaderTest extends TestCase
         $this->csvReader->setEscape('\\');
         $this->csvReader->setEnclosure('"');
 
-        $this->assertTrue($this->csvReader->process('header1,header2,header3,header4'));
+        $this->csvReader->process('header1,header2,header3,header4');
+        $this->assertTrue(true);
     }
 
     /**
@@ -70,7 +71,8 @@ class CsvReaderTest extends TestCase
         $this->csvReader->setNewline("\n");
         $this->csvReader->setDelimiter(',');
 
-        $this->assertTrue($this->csvReader->process('header1,header2,header3,header1'));
+        $this->csvReader->process('header1,header2,header3,header1');
+        $this->assertTrue(true);
     }
 
     /**

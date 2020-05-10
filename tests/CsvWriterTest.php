@@ -2,10 +2,10 @@
 
 namespace Selective\Test;
 
+use InvalidArgumentException;
 use org\bovigo\vfs\vfsStream;
 use org\bovigo\vfs\vfsStreamDirectory;
 use PHPUnit\Framework\TestCase;
-use RuntimeException;
 use Selective\Csv\CsvWriter;
 use Selective\Encoding\Utf8Encoding;
 
@@ -55,7 +55,7 @@ final class CsvWriterTest extends TestCase
      */
     public function testSetFileNameWithNullFileName(): void
     {
-        $this->expectException(RuntimeException::class);
+        $this->expectException(InvalidArgumentException::class);
         $this->csvWriter->setFileName('');
     }
 
@@ -72,11 +72,12 @@ final class CsvWriterTest extends TestCase
         $this->csvWriter->setEnclosure('"');
         $this->csvWriter->setNewline("\r\n");
 
-        $this->assertTrue($this->csvWriter->putColumns([
+        $this->csvWriter->putColumns([
             'header1',
             'header2',
             'header3',
-        ]));
+        ]);
+        $this->assertTrue(true);
     }
 
     /**
@@ -92,11 +93,12 @@ final class CsvWriterTest extends TestCase
         $this->csvWriter->setEnclosure('"');
         $this->csvWriter->setNewline("\r\n");
 
-        $this->assertTrue($this->csvWriter->putColumns([
+        $this->csvWriter->putColumns([
             ['text' => 'header1'],
             ['text' => 'header2'],
             ['text' => 'header3'],
-        ]));
+        ]);
+        $this->assertTrue(true);
     }
 
     /**
@@ -106,9 +108,10 @@ final class CsvWriterTest extends TestCase
      */
     public function testPutRow(): void
     {
-        $this->assertTrue($this->csvWriter->putRow([
+        $this->csvWriter->putRow([
             'this,is,csv,row',
-        ]));
+        ]);
+        $this->assertTrue(true);
     }
 
     /**
@@ -118,10 +121,12 @@ final class CsvWriterTest extends TestCase
      */
     public function testPutRows(): void
     {
-        $this->assertTrue($this->csvWriter->putRows([
+        $this->csvWriter->putRows([
             ['this,is,csv,first,row'],
             ['this,is,csv,second,row'],
-        ]));
+        ]);
+
+        $this->assertTrue(true);
     }
 
     /**
@@ -138,10 +143,12 @@ final class CsvWriterTest extends TestCase
             ['text' => 'header4'],
             ['text' => 'header5'],
         ]);
-        $this->assertTrue($this->csvWriter->putRows([
+        $this->csvWriter->putRows([
             ['this,is,csv,first,row'],
             ['this,is,csv,second,row'],
-        ]));
+        ]);
+
+        $this->assertTrue(true);
     }
 
     /**

@@ -8,66 +8,66 @@ use Selective\Encoding\Utf8Encoding;
 /**
  * CSV Reader.
  */
-class CsvReader
+final class CsvReader
 {
     /**
      * Encoding.
      *
      * @var EncodingInterface
      */
-    protected $encoding;
+    private $encoding;
 
     /**
      * Delimiter.
      *
      * @var string
      */
-    protected $delimiter = ';';
+    private $delimiter = ';';
 
     /**
      * Enclosure.
      *
      * @var string
      */
-    protected $enclosure = '"';
+    private $enclosure = '"';
 
     /**
      * Escape.
      *
      * @var string
      */
-    protected $escape = '\\';
+    private $escape = '\\';
 
     /**
      * New line.
      *
      * @var string
      */
-    protected $newline = "\n";
+    private $newline = "\n";
 
     /**
      * Headers.
      *
-     * @var array
+     * @var array<mixed>
      */
-    protected $headers = [];
+    private $headers = [];
 
     /**
      * Header count.
      *
      * @var int
      */
-    protected $headerCount = 0;
+    private $headerCount = 0;
 
     /**
      * Lines.
      *
-     * @var array
+     * @var array<mixed>
      */
-    protected $lines = [];
+    private $lines = [];
 
     /**
-     * Constructor.
+     * The constructor.
      */
     public function __construct()
     {
@@ -77,11 +77,11 @@ class CsvReader
     /**
      * Set encoding.
      *
-     * @param EncodingInterface $encoding encoding (utf8)
+     * @param EncodingInterface $encoding The encoding
      *
      * @return void
      */
-    public function setEncoding(EncodingInterface $encoding)
+    public function setEncoding(EncodingInterface $encoding): void
     {
         $this->encoding = $encoding;
     }
@@ -89,11 +89,11 @@ class CsvReader
     /**
      * Set delimiter.
      *
-     * @param string $delimiter delimiter (;)
+     * @param string $delimiter The delimiter char
      *
      * @return void
      */
-    public function setDelimiter(string $delimiter)
+    public function setDelimiter(string $delimiter): void
     {
         $this->delimiter = $delimiter;
     }
@@ -101,11 +101,11 @@ class CsvReader
     /**
      * Set enclosure.
      *
-     * @param string $enclosure enclosure (")
+     * @param string $enclosure The enclosure char
      *
      * @return void
      */
-    public function setEnclosure(string $enclosure)
+    public function setEnclosure(string $enclosure): void
     {
         $this->enclosure = $enclosure;
     }
@@ -113,11 +113,11 @@ class CsvReader
     /**
      * Set escape.
      *
-     * @param string $escape escape (\\)
+     * @param string $escape The escape char
      *
      * @return void
      */
-    public function setEscape(string $escape)
+    public function setEscape(string $escape): void
     {
         $this->escape = $escape;
     }
@@ -125,11 +125,11 @@ class CsvReader
     /**
      * Set newline.
      *
-     * @param string $newline escape (\n)
+     * @param string $newline The newline char
      *
      * @return void
      */
-    public function setNewline(string $newline)
+    public function setNewline(string $newline): void
     {
         $this->newline = $newline;
     }
@@ -139,17 +139,15 @@ class CsvReader
      *
      * @param string $csv CSV content
      *
-     * @return bool Success
+     * @return void
      */
-    public function process(string $csv): bool
+    public function process(string $csv): void
     {
         $this->lines = str_getcsv($csv, $this->newline);
         reset($this->lines);
         $this->headers = [];
         $this->headerCount = 0;
         $this->parseHeader();
-
-        return true;
     }
 
     /**
@@ -157,7 +155,7 @@ class CsvReader
      *
      * @return void
      */
-    private function parseHeader()
+    private function parseHeader(): void
     {
         $this->headers = [];
         $this->headerCount = 0;
@@ -172,9 +170,9 @@ class CsvReader
     /**
      * Fetch next row.
      *
-     * @return array|null The next row or null
+     * @return array<mixed>|null The next row or null
      */
-    public function fetch()
+    public function fetch(): ?array
     {
         $line = current($this->lines);
 
@@ -185,7 +183,7 @@ class CsvReader
         next($this->lines);
 
         // Encode data
-        $line = $this->encoding->encode($line);
+        $line = $this->encoding->encode($line) ?? '';
 
         $values = str_getcsv($line, $this->delimiter, $this->enclosure, $this->escape);
 
@@ -203,9 +201,9 @@ class CsvReader
     /**
      * Get CSV headers.
      *
-     * @param array $headers Headers
+     * @param array<mixed> $headers Headers
      *
-     * @return array Save headers
+     * @return array<mixed> Save headers
      */
     private function getCsvHeaders(array $headers): array
     {

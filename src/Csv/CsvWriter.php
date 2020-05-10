@@ -2,6 +2,7 @@
 
 namespace Selective\Csv;
 
+use InvalidArgumentException;
 use RuntimeException;
 use Selective\Encoding\EncodingInterface;
 use Selective\Encoding\IsoEncoding;
@@ -9,49 +10,49 @@ use Selective\Encoding\IsoEncoding;
 /**
  * Excel friendly CSV file writer.
  */
-class CsvWriter
+final class CsvWriter
 {
     /**
      * Encoding.
      *
      * @var EncodingInterface
      */
-    protected $encoding;
+    private $encoding;
 
     /**
      * Filename.
      *
      * @var string
      */
-    protected $fileName = '';
+    private $fileName = '';
 
     /**
      * Fields.
      *
-     * @var array
+     * @var array<mixed>
      */
-    protected $columns = [];
+    private $columns = [];
 
     /**
      * Delimiter.
      *
      * @var string
      */
-    protected $delimiter = ';';
+    private $delimiter = ';';
 
     /**
      * Newline.
      *
      * @var string
      */
-    protected $newline = "\r\n";
+    private $newline = "\r\n";
 
     /**
      * Enclosure.
      *
      * @var string
      */
-    protected $enclosure = '"';
+    private $enclosure = '"';
 
     /**
      * Constructor.
@@ -70,7 +71,7 @@ class CsvWriter
     /**
      * Set encoding.
      *
-     * @param EncodingInterface $encoding encoding (utf8)
+     * @param EncodingInterface $encoding The encoding (utf8)
      *
      * @return void
      */
@@ -82,16 +83,16 @@ class CsvWriter
     /**
      * Set filename.
      *
-     * @param string $fileName fileName
+     * @param string $fileName The fileName
      *
-     * @throws RuntimeException
+     * @throws InvalidArgumentException
      *
      * @return void
      */
-    public function setFileName(string $fileName)
+    public function setFileName(string $fileName): void
     {
         if (empty($fileName)) {
-            throw new RuntimeException('CSV filename required');
+            throw new InvalidArgumentException('CSV filename required');
         }
         $this->fileName = $fileName;
         touch($this->fileName);
@@ -101,11 +102,11 @@ class CsvWriter
     /**
      * Set delimiter.
      *
-     * @param string $delimiter delimiter
+     * @param string $delimiter The delimiter
      *
      * @return void
      */
-    public function setDelimiter($delimiter)
+    public function setDelimiter(string $delimiter): void
     {
         $this->delimiter = $delimiter;
     }
@@ -113,11 +114,11 @@ class CsvWriter
     /**
      * Set newline.
      *
-     * @param string $newline newline
+     * @param string $newline The newline
      *
      * @return void
      */
-    public function setNewline($newline)
+    public function setNewline(string $newline): void
     {
         $this->newline = $newline;
     }
@@ -125,11 +126,11 @@ class CsvWriter
     /**
      * Set enclosure.
      *
-     * @param string $enclosure enclosure
+     * @param string $enclosure The enclosure
      *
      * @return void
      */
-    public function setEnclosure($enclosure)
+    public function setEnclosure(string $enclosure): void
     {
         $this->enclosure = $enclosure;
     }
@@ -137,11 +138,11 @@ class CsvWriter
     /**
      * Put columns to file.
      *
-     * @param array $columns Columns
+     * @param array<mixed> $columns The columns
      *
-     * @return bool Status
+     * @return void
      */
-    public function putColumns(array $columns): bool
+    public function putColumns(array $columns): void
     {
         $this->columns = [];
         $row = [];
@@ -154,32 +155,32 @@ class CsvWriter
             }
         }
 
-        $result = $this->putRow($row);
+        $this->putRow($row);
         $this->columns = $columns;
-
-        return $result;
     }
 
     /**
      * Insert a single row to CSV file.
      *
-     * @param array $row row
+     * @param array<mixed> $row The row
      *
-     * @return bool Status
+     * @return void
      */
-    public function putRow($row)
+    public function putRow(array $row): void
     {
-        return $this->putRows([$row]);
+        $this->putRows([$row]);
     }
 
     /**
      * Append rows to csv file.
      *
-     * @param array $rows rows
+     * @param array<mixed> $rows The rows
      *
-     * @return bool Status
+     * @throws RuntimeException
+     *
+     * @return void
      */
-    public function putRows(array $rows)
+    public function putRows(array $rows): void
     {
         $content = '';
         foreach ($rows as $row) {
@@ -187,17 +188,19 @@ class CsvWriter
         }
         $result = file_put_contents($this->fileName, $content, FILE_APPEND);
 
-        return $result !== false;
+        if ($result === false) {
+            throw new RuntimeException(sprintf('Failed to write file: %s', $this->fileName));
+        }
     }
 
     /**
      * Convert row to CSV string.
      *
-     * @param array $row row
+     * @param array<mixed> $row The row
      *
-     * @return string csv
+     * @return string The csv line
      */
-    protected function rowToCsv($row)
+    private function rowToCsv(array $row): string
     {
         if (!empty($this->columns)) {
             // Mapping of columns to the correct position
@@ -224,10 +227,10 @@ class CsvWriter
     /**
      * Escape/quote a value to CSV string.
      *
-     * @param string|null $value value
-     * @param string $enclosure enclosure
+     * @param string|null $value The value
+     * @param string $enclosure The enclosure
      *
-     * @return mixed escaped value
+     * @return mixed The escaped value
      */
     public function escape($value, $enclosure = '"')
     {
